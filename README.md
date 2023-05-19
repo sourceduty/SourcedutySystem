@@ -1,17 +1,7 @@
 # SourcedutySystem
 🎛️ Sourceduty menu-based UI system.
 #
-Designed for Python and keyboard arrow key controls.
-#
-
-Navigate Menus (→ ←)
-
-Navigate Choices (↑ ↓)
-
-Select (ENTER)
-
-End Program (ESC) 
-
+Designed for Python.
 #
 Copyright (c) 2023, Sourceduty
 

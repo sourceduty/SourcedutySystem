@@ -1,118 +1,114 @@
-#Sourceduty System V1.0
+#Sourceduty System V1.1
 #Copyright (c) 2023, Sourceduty
 #This software is free and open-source; anyone can redistribute it and/or modify it.
 
-from colorama import *
-import sys
-import time
-import os
+from tkinter import Tk, Menu
+from tkinter import *
+from PIL import ImageTk, Image  
 
-def cool_print(text):
-    for c in text:
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(0.010)
+# root window
+root = Tk()
+root.geometry('1000x500')
+root.title('Sourceduty System 1.1')
 
-def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+img = Image.open('Background.png')
+bg = ImageTk.PhotoImage(img)
+label = Label(root, image=bg)
+label.place(x = 0,y = 0)
 
-        
-def make():
-    cls()
-    cool_print(f"""
-Sourceduty System V1.0
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+# create a menubar
+menubar = Menu(root)
+root.config(menu=menubar)
 
-Main Menu 
+# create the file_menu
+file_menu = Menu(
+    menubar,
+    tearoff=0
+)
+# add a submenu
+sub_menu = Menu(file_menu, tearoff=0)
+sub_menu.add_command(label='3D printing')
+sub_menu.add_command(label='3D models')
 
-    {Fore.WHITE}1 {Fore.RESET} ➝  {Fore.YELLOW}Games{Fore.RESET}
-    {Fore.WHITE}2 {Fore.RESET} ➝  {Fore.YELLOW}Log{Fore.RESET}
-    {Fore.WHITE}3 {Fore.RESET} ➝  {Fore.WHITE}Options{Fore.RESET}
-    {Fore.WHITE}4 {Fore.RESET} ➝  {Fore.WHITE}Config{Fore.RESET}
-
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
-
-Navigate Menus (A/B/C)
-Navigate Choices (1/2/3)
-Select (ENTER)
-End Program (X)
-Return (/) 
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
-
-Selection: """)
-    global response
-    response = input("")
-    if int(response) == 1:
-       first_function()
-    elif int(response) == 2:
-        second_function()
-    elif int(response) == 3:
-         third_function()
+# add the File menu to the menubar
+file_menu.add_cascade(
+    label="3D",
+    menu=sub_menu
+)
     
+# add menu items to the File menu
+file_menu.add_command(label='New')
+file_menu.add_command(label='Open...')
+file_menu.add_command(label='Close')
+file_menu.add_separator()
 
-def first_function():
-    cls()
-    cool_print(f"""
-Games
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+# add a submenu
+sub_menu = Menu(file_menu, tearoff=0)
+sub_menu.add_command(label='Keyboard Shortcuts')
+sub_menu.add_command(label='Color Themes')
 
-    {Fore.WHITE}1 {Fore.RESET} ➝  {Fore.RED}Sky Tetris{Fore.RESET}
-    {Fore.WHITE}2 {Fore.RESET} ➝  {Fore.RED}Retro Mario Airplane{Fore.RESET}
+# add the File menu to the menubar
+file_menu.add_cascade(
+    label="Preferences",
+    menu=sub_menu
+)
 
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+# add Exit menu item
+file_menu.add_separator()
+file_menu.add_command(
+    label='Exit',
+    command=root.destroy
+)
 
-Navigate Menus (A/B/C)
-Navigate Choices (1/2/3)
-Select (ENTER)
-End Program (X)
-Return (/) 
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
 
-Selection: """)
-    global response
-    response = input("")
-    if int(response) == 1:
-       first_function()
-    elif int(response) == 2:
-        second_function()
-    make()
-def second_function():
-    cls()
-    cool_print(f"""
-Log
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+menubar.add_cascade(
+    label="Design",
+    menu=file_menu,
+    underline=0
+)
+# create the Log menu
+log_menu = Menu(
+    menubar,
+    tearoff=0
+)
 
-    {Fore.WHITE}1 {Fore.RESET} ➝  {Fore.RED}Power Time{Fore.RESET}
-    {Fore.WHITE}2 {Fore.RESET} ➝  {Fore.RED}Game Time{Fore.RESET}
+log_menu.add_command(label='Welcome')
+log_menu.add_command(label='About...')
 
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+menubar.add_cascade(
+    label="Games",
+    menu=file_menu,
+    underline=0
+)
+# create the Log menu
+log_menu = Menu(
+    menubar,
+    tearoff=0
+)
 
-Navigate Menus (A/B/C)
-Navigate Choices (1/2/3)
-Select (ENTER)
-End Program (X)
-Return (/) 
-⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏⸏
+log_menu.add_command(label='Welcome')
+log_menu.add_command(label='About...')
 
-Selection: """)
-    global response
-    response = input("")
-    if int(response) == 1:
-       first_function()
-    elif int(response) == 2:
-        second_function()
-    make()
-def third_function():
-    cls()
-    cool_print(f""" Configuration
-    _____________________
-    
-    Note
-    _____________________
-    
-    Press enter to return
-    """)
-    input()
-    make()
-    
-make()
+# add the Log menu to the menubar
+menubar.add_cascade(
+    label="Log",
+    menu=log_menu,
+    underline=0
+)
+# create the Config menu
+config_menu = Menu(
+    menubar,
+    tearoff=0
+)
+
+config_menu.add_command(label='Welcome')
+config_menu.add_command(label='About...')
+
+# add the Config menu to the menubar
+menubar.add_cascade(
+    label="Config",
+    menu=config_menu,
+    underline=0
+)
+
+root.mainloop()

@@ -1,5 +1,5 @@
 # SourcedutySystem
-🎛️ Sourceduty menu-based UI system.
+🎛️ Sourceduty menu-based GUI system.
 #
 Designed for Python.
 #
